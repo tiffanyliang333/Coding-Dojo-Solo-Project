@@ -52,8 +52,9 @@ const MetricWall = () => {
                                         <td>{metric.status}</td>
                                         <td>
                                             <Link to = {`/metrics/edit/${metric._id}`}>
-                                                Edit
+                                                <button>Edit</button>
                                             </Link>
+                                            |
                                             <button onClick ={(e) => {deleteMetric(metric._id)}}>
                                                 Delete
                                             </button>

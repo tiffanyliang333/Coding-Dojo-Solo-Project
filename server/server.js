@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 8000;
-require("../../Solo Project1/server/config/mongoose.config.js.js");
+require("../../Solo Project1/server/config/mongoose.config.js");
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
