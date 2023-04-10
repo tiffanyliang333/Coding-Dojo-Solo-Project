@@ -8,6 +8,7 @@ const AddMetric = (props) => {
     const [greenDef, setGreenDef] = useState("");
     const [yellowDef, setYellowDef] = useState("");
     const [redDef, setRedDef] = useState("");
+    const [status, setStatus] = useState("");
     const navigate = useNavigate();
 
     const [errors, setErrors] = useState([]);
@@ -15,7 +16,7 @@ const AddMetric = (props) => {
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:8000/api/metrics`, {
-            name, greenDef, yellowDef, redDef,
+            name, greenDef, yellowDef, redDef, status
         })
         .then ((res) => {
             console.log(res);
@@ -24,6 +25,7 @@ const AddMetric = (props) => {
             setGreenDef("");
             setYellowDef("");
             setRedDef("");
+            setStatus("");
             navigate("/metrics");
         })
         .catch((err) => {
@@ -47,6 +49,16 @@ const AddMetric = (props) => {
                     <input type = "text" id = "name" value ={name} name = "name" onChange={(e) => {
                         setName(e.target.value);
                     }} />
+                </div>
+                <div>
+                    <h4>Current Status: </h4>
+                    {errors.status ? <p>{errors.status.message}</p> : null}
+                    <select name ="status" value = {status} onChange={(e) => setStatus(e.target.value)} required>
+                        <option value ="">Select Status</option>
+                        <option value ="green">Green</option>
+                        <option value ="yellow">Yellow</option>
+                        <option value = "red">Red</option>
+                    </select>
                 </div>
                 <div>
                     <h4>Color Definitions: </h4>

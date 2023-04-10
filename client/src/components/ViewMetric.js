@@ -4,6 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 
 const ViewMetric = (props) => {
     const {id} = useParams();
+    console.log(id);
     const [metricDetails, setMetricDetails] = useState({});
     const [selectedColor, setSelectedColor] = useState('');
     const selector = 'Status selector:';
@@ -13,28 +14,28 @@ const ViewMetric = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/metrics/${id}`)
             .then((res) => {
-                console.log(res.data.metrics);
-                setMetricDetails(res.data.metrics);
+                console.log(res.data);
+                setMetricDetails(res.data.metric);
+                // setSelectedColor({
+                //     green: res.data.metric.greenDef,
+                //     yellow: res.data.metric.yellowDef,
+                //     red: res.data.metric.redDef,
+                // });
+                setSelectedColor(res.data.metric.color);
             })
             .catch((err) => console.log(err.res));
     }, [id]);
 
-    useEffect(() => {
-        localStorage.setItem('selectedColor', selectedColor);
-    }, [selectedColor]);
-
-    useEffect(() => {
-        const prevSelectedColor = localStorage.getItem('selectedColor');
-        if (prevSelectedColor) {
-            setSelectedColor(prevSelectedColor);
-        }
-    }, []);
+    const handleColorClick = (color) => {
+        setSelectedColor(color);
+    };
 
     return (
         <div>
             <Link to="/metrics">back</Link>
-            <h1>View {metricDetails.name}</h1>
+            <h1>{metricDetails.name}</h1>
             <h4>Current Status: </h4>
+            <p>{metricDetails.status}</p>
             <div
                 style={{
                     backgroundColor: selectedColor,
@@ -42,6 +43,7 @@ const ViewMetric = (props) => {
                     height: '50px',
                     display: 'inline-block',
                     margin: '10px',
+                    borderRadius: '50%',
                 }}
             />
             <div>{selector}</div>
@@ -55,19 +57,23 @@ const ViewMetric = (props) => {
                         height: '30px',
                         display: 'inline-block',
                         margin: '10px',
-                        border: selectedColor === color ? '3px solid black' : 'none'
+                        border: selectedColor === color ? '3px solid black' : 'none',
+                        borderRadius: '50%',
                     }}
-                    onClick={() => setSelectedColor(color)}
+                    onClick={() => handleColorClick(color)}
                 />
                 ))}
             </div>
             <div>
                 <p>__________________________________________________</p>
                 <h4>Color Definitions: </h4>
-                <p>Green: {metricDetails.greenDef}</p>
-                <p>Yellow: {metricDetails.yellowDef}</p>
-                <p>Red: {metricDetails.redDef}</p>
+                <p style = {{color: "green"}}>Green: {metricDetails.greenDef}</p>
+                <p style = {{color: "orange"}}>Yellow: {metricDetails.yellowDef}</p>
+                <p style = {{color: "red"}}>Red: {metricDetails.redDef}</p>
             </div>
+            <Link to = {`/metrics/edit/${metricDetails._id}`}>
+                <button>Edit Color Definitions</button>
+            </Link>
         </div>
     );
 };

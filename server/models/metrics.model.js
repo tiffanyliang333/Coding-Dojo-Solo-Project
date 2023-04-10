@@ -13,6 +13,9 @@ const MetricSchema = new mongoose.Schema({
     redDef: {type: String,
         required: [true, "Definition is required."],
         minLength: [2, "Definition must have at least 2 characters."]},
+    status: {type: String,
+        required:[true, "Status is required."],
+        enum: ["green", "yellow", "red"]},
 },
     { timestamp: true }
 );

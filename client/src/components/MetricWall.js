@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 
 const MetricWall = () => {
+    // const {id} = useParams();
     const [metric, setMetric] = useState([]);
 
     const navigate = useNavigate();
@@ -45,17 +46,13 @@ const MetricWall = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {metric.map((metric, index) => {
+                            {metric.map((m, index) => {
                                 return(
                                     <tr key = {index}>
-                                        <td><Link to ="/metrics/:id">{metric.name}</Link></td>
-                                        <td>{metric.status}</td>
+                                        <td><Link to ={`/metrics/${m._id}`}>{m.name}</Link></td>
+                                        <td>{m.status}</td>
                                         <td>
-                                            <Link to = {`/metrics/edit/${metric._id}`}>
-                                                <button>Edit</button>
-                                            </Link>
-                                            |
-                                            <button onClick ={(e) => {deleteMetric(metric._id)}}>
+                                            <button onClick ={(e) => {deleteMetric(m._id)}}>
                                                 Delete
                                             </button>
                                         </td>
