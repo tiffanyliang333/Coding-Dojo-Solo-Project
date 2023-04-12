@@ -7,6 +7,7 @@ const ViewMetric = (props) => {
     console.log(id);
     const [metricDetails, setMetricDetails] = useState({});
     const [selectedColor, setSelectedColor] = useState('');
+    const [status, setStatus] = useState('');
     const selector = 'Status selector:';
 
     const colorOptions = ['green', 'yellow', 'red'];
@@ -26,8 +27,22 @@ const ViewMetric = (props) => {
             .catch((err) => console.log(err.res));
     }, [id]);
 
-    const handleColorClick = (color) => {
-        setMetricDetails({...metricDetails, status:color});
+    // const handleColorClick = (color) => {
+    //     setMetricDetails({...metricDetails, status:color});
+    // };
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        // const updatedMetric = {
+        //     color: selectedColor
+        // };
+        setMetricDetails({...metricDetails, color: selectedColor});
+        axios.put(`http://localhost:8000/api/metrics/${id}`, status)
+            .then((res) => {
+                console.log(res.data);
+                setStatus(res.data.metric.status);
+            })
+            .catch((err) => console.log(err.res));
     };
 
     return (
@@ -35,36 +50,41 @@ const ViewMetric = (props) => {
             <Link to="/metrics">back</Link>
             <h1>{metricDetails.name}</h1>
             <h4>Current Status: </h4>
-            <p>{metricDetails.status}</p>
+            {/* <p>{metricDetails.status}</p> */}
             <div
                 style={{
                     backgroundColor: metricDetails.status ? metricDetails.status: null,
                     // backgroundColor: selectedColor == metricDetails.status ? selectedColor: metricDetails.status,
-                    width: '50px',
-                    height: '50px',
+                    width: '100px',
+                    height: '100px',
                     display: 'inline-block',
                     margin: '10px',
                     borderRadius: '50%',
                 }}
             />
             <div>{selector}</div>
-            <div>
-                {colorOptions.map((color) => (
-                <div
-                    key={color}
-                    style={{
-                        backgroundColor: color,
-                        width: '30px',
-                        height: '30px',
-                        display: 'inline-block',
-                        margin: '10px',
-                        border: selectedColor === color ? '3px solid black' : 'none',
-                        borderRadius: '50%',
-                    }}
-                    onClick={() => handleColorClick(color)}
-                />
-                ))}
-            </div>
+            {/* <form onSubmit = {handleColorClick}> */}
+            <form onSubmit = {submitHandler}>
+                <div>
+                    {colorOptions.map((color) => (
+                    <div
+                        key={color}
+                        style={{
+                            backgroundColor: color,
+                            width: '30px',
+                            height: '30px',
+                            display: 'inline-block',
+                            margin: '10px',
+                            border: selectedColor === color ? '3px solid black' : 'none',
+                            borderRadius: '50%',
+                        }}
+                        // onClick={() => handleColorClick(color)}
+                        onClick={() => setSelectedColor(color)}
+                    />
+                    ))}
+                </div>
+                <button type ="submit">Update Status</button>
+            </form>
             <div>
                 <p>__________________________________________________</p>
                 <h4>Color Definitions: </h4>
@@ -73,7 +93,7 @@ const ViewMetric = (props) => {
                 <p style = {{color: "red"}}>Red: {metricDetails.redDef}</p>
             </div>
             <Link to = {`/metrics/edit/${metricDetails._id}`}>
-                <button>Edit Color Definitions</button>
+                <button>Edit Information</button>
             </Link>
         </div>
     );
