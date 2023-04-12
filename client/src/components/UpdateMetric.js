@@ -45,7 +45,7 @@ const UpdateMetric = (props) => {
 
     return(
         <div>
-            <Link to="/metrics">back</Link>
+            <Link to="/metrics">home</Link>
             <h1>Edit Metric</h1>
             <form onSubmit = {submitHandler}>
                 <div>

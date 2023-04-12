@@ -27,7 +27,7 @@ const ViewMetric = (props) => {
     }, [id]);
 
     const handleColorClick = (color) => {
-        setSelectedColor(color);
+        setMetricDetails({...metricDetails, status:color});
     };
 
     return (
@@ -38,7 +38,8 @@ const ViewMetric = (props) => {
             <p>{metricDetails.status}</p>
             <div
                 style={{
-                    backgroundColor: selectedColor,
+                    backgroundColor: metricDetails.status ? metricDetails.status: null,
+                    // backgroundColor: selectedColor == metricDetails.status ? selectedColor: metricDetails.status,
                     width: '50px',
                     height: '50px',
                     display: 'inline-block',

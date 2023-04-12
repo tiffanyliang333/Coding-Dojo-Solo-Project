@@ -50,7 +50,19 @@ const MetricWall = () => {
                                 return(
                                     <tr key = {index}>
                                         <td><Link to ={`/metrics/${m._id}`}>{m.name}</Link></td>
-                                        <td>{m.status}</td>
+                                        <td>
+                                            {m.status}
+                                        {/* <div
+                                            style={{
+                                                backgroundColor: metric.color,
+                                                width: '50px',
+                                                height: '50px',
+                                                display: 'inline-block',
+                                                margin: '10px',
+                                                borderRadius: '50%',
+                                            }}
+                                        /> */}
+                                        </td>
                                         <td>
                                             <button onClick ={(e) => {deleteMetric(m._id)}}>
                                                 Delete
