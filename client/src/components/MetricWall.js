@@ -37,7 +37,7 @@ const MetricWall = () => {
                 <div className = "text-center">
                     <h1>Key Performance Tracker</h1>
                     <button id="AlphButton" onClick={sortByAlph}>
-                        Sort by Alphabetical Order
+                        Sort in Alphabetical Order
                     </button>
                     <table className = "table mx-auto">
                         <thead>
@@ -67,7 +67,7 @@ const MetricWall = () => {
                                         </td>
                                         <td>
                                             <button id="DeleteButton" onClick ={(e) => {deleteMetric(m._id)}}>
-                                                Delete
+                                                Delete Metric
                                             </button>
                                         </td>
                                     </tr>

@@ -35,7 +35,6 @@ header{
   border-radius: 10px;
   margin: 10px;
   font-size: 8px;
-  float: right;
 }
 
 #AddButton {
@@ -72,9 +71,9 @@ header{
 }
 
 a{
-  text-decoration: none;
-  color: black;
-  font-size: 22px;
+  text-decoration: underline;
+  color: navy;
+  font-size: 25px;
 }
 
 table {
@@ -134,4 +133,9 @@ table td {
   width: 120px;
   text-align: center;
   font-size: 12px;
+}
+
+#name {
+  text-align: center;
+  width: 120px;
 }
