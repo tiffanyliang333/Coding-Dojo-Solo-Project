@@ -40,20 +40,20 @@ const AddMetric = (props) => {
 
     return(
         <div>
-            <Link to="/metrics">back</Link>
+            <Link to="/metrics" id="BackB">back</Link>
             <h1>Add Metric</h1>
             <form onSubmit = {submitHandler}>
                 <div>
                     <h4>Metric: </h4>
-                    {errors.name ? <p>{errors.name.message}</p> : null}
+                    {errors.name ? <p id="Validations">{errors.name.message}</p> : null}
                     <input type = "text" id = "name" value ={name} name = "name" onChange={(e) => {
                         setName(e.target.value);
                     }} />
                 </div>
                 <div>
                     <h4>Current Status: </h4>
-                    {errors.status ? <p>{errors.status.message}</p> : null}
-                    <select name ="status" value = {status} onChange={(e) => setStatus(e.target.value)} required>
+                    {errors.status ? <p id="Validations">{errors.status.message}</p> : null}
+                    <select id="Dropdown" name ="status" value = {status} onChange={(e) => setStatus(e.target.value)} required>
                         <option value ="">Select Status</option>
                         <option value ="green">Green</option>
                         <option value ="yellow">Yellow</option>
@@ -63,29 +63,29 @@ const AddMetric = (props) => {
                 <div>
                     <h4>Color Definitions: </h4>
                     <div>
-                        <h5>Green: </h5>
-                        {errors.greenDef ? <p>{errors.greenDef.message}</p> : null}
+                        <h5 id="gheader">Green: </h5>
+                        {errors.greenDef ? <p id="Validations">{errors.greenDef.message}</p> : null}
                         <input type = "text" id = "greenDef" value ={greenDef} name = "greenDef" onChange={(e) => {
                             setGreenDef(e.target.value);
                         }} />
                     </div>
                     <div>
-                        <h5>Yellow: </h5>
-                        {errors.yellowDef ? <p>{errors.yellowDef.message}</p> : null}
+                        <h5 id="yheader">Yellow: </h5>
+                        {errors.yellowDef ? <p id="Validations">{errors.yellowDef.message}</p> : null}
                         <input type = "text" id = "yellowDef" value ={yellowDef} name = "yellowDef" onChange={(e) => {
                             setYellowDef(e.target.value);
                         }} />
                     </div>
                     <div>
-                        <h5>Red: </h5>
-                        {errors.redDef ? <p>{errors.redDef.message}</p> : null}
+                        <h5 id="rheader">Red: </h5>
+                        {errors.redDef ? <p id="Validations">{errors.redDef.message}</p> : null}
                         <input type = "text" id = "redDef" value ={redDef} name = "redDef" onChange={(e) => {
                             setRedDef(e.target.value);
                         }} />
                     </div>
                 </div>
                 <div>
-                    <input type ="submit" value = "Add Metric" />
+                    <input id = "AddButton" type ="submit" value = "Add Metric" />
                 </div>
             </form>
         </div>

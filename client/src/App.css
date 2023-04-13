@@ -2,37 +2,136 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header{
+  font-size: xx-large;
+  margin: 25px 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form-fields{
+  color:rgb(136, 135, 135);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  width: 260px;
+  margin: auto;
+  border-radius: 30px;
+  padding:15px;
+  background-color: rgb(236, 236, 236);
 }
 
-.App-link {
-  color: #61dafb;
+.form-fields>input{
+  border-radius: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submit-input, button{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 30px;
+}
+
+#AlphButton {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px;
+  font-size: 8px;
+  float: right;
+}
+
+#AddButton {
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 30px;
+}
+
+#DeleteButton {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  margin: 30px;
+  font-size: 10px;
+}
+
+#UpdateButton {
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 10px;
+  font-size:10px;
+}
+
+#BackB {
+  color:gray;
+  font-size: 10px;
+  margin: 10px;
+}
+
+.oneProduct-component{
+  margin:27vh auto;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  font-size: 22px;
+}
+
+table {
+  padding: 10px;
+  margin: 0 auto;
+  border: 3px solid black;
+  border-radius: 30px;
+}
+
+table th,
+table td {
+  padding: 10px 40px;
+}
+
+#greenDef {
+  height: 40px;
+  width: 200px;
+  word-break: break-all;
+  font-size: 10px;
+  text-align: center;
+}
+
+#yellowDef {
+  height: 40px;
+  width: 200px;
+  word-break: break-all;
+  font-size: 10px;
+  text-align: center;
+}
+
+#redDef {
+  height: 40px;
+  width: 200px;
+  word-break: break-all;
+  font-size: 10px;
+  text-align: center;
+}
+
+#gheader {
+  color: green;
+}
+
+#yheader {
+  color: orange;
+}
+
+#rheader {
+  color: red;
+}
+
+#Validations{
+  color: red;
+  font-size:12px;
+}
+
+#Dropdown {
+  width: 120px;
+  text-align: center;
+  font-size: 12px;
 }

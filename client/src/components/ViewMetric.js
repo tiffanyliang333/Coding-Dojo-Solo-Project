@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useParams, useNavigate} from 'react-router-dom';
 
 const ViewMetric = (props) => {
     const {id} = useParams();
@@ -9,6 +9,7 @@ const ViewMetric = (props) => {
     const [selectedColor, setSelectedColor] = useState('');
     const [status, setStatus] = useState('');
     const selector = 'Status selector:';
+    const navigate = useNavigate();
 
     const colorOptions = ['green', 'yellow', 'red'];
 
@@ -22,7 +23,7 @@ const ViewMetric = (props) => {
                 //     yellow: res.data.metric.yellowDef,
                 //     red: res.data.metric.redDef,
                 // });
-                setSelectedColor(res.data.metric.color);
+                setSelectedColor(res.data.metric.status);
             })
             .catch((err) => console.log(err.res));
     }, [id]);
@@ -36,18 +37,19 @@ const ViewMetric = (props) => {
         // const updatedMetric = {
         //     color: selectedColor
         // };
-        setMetricDetails({...metricDetails, color: selectedColor});
-        axios.put(`http://localhost:8000/api/metrics/${id}`, status)
+        // setMetricDetails({...metricDetails, color: selectedColor});
+        axios.put(`http://localhost:8000/api/metrics/edit/${id}`, {status: selectedColor})
             .then((res) => {
                 console.log(res.data);
-                setStatus(res.data.metric.status);
+                // setStatus(res.data.metric.status);
+                navigate("/metrics");
             })
             .catch((err) => console.log(err.res));
     };
 
     return (
         <div>
-            <Link to="/metrics">back</Link>
+            <Link to="/metrics" id="BackB">back</Link>
             <h1>{metricDetails.name}</h1>
             <h4>Current Status: </h4>
             {/* <p>{metricDetails.status}</p> */}
@@ -83,7 +85,7 @@ const ViewMetric = (props) => {
                     />
                     ))}
                 </div>
-                <button type ="submit">Update Status</button>
+                <button type ="submit" id ="UpdateButton">Update Status</button>
             </form>
             <div>
                 <p>__________________________________________________</p>
@@ -93,7 +95,7 @@ const ViewMetric = (props) => {
                 <p style = {{color: "red"}}>Red: {metricDetails.redDef}</p>
             </div>
             <Link to = {`/metrics/edit/${metricDetails._id}`}>
-                <button>Edit Information</button>
+                <button id="UpdateButton">Edit Color Definitions</button>
             </Link>
         </div>
     );

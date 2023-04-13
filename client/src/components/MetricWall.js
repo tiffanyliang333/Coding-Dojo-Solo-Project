@@ -34,10 +34,12 @@ const MetricWall = () => {
     return(
         <div className = "container">
             <div className = "row">
-                <div className = "col">
-                    <h1>METRIC WALL</h1>
-                    <button onClick={sortByAlph}>Sort by Alphabetical Order</button>
-                    <table className = "table">
+                <div className = "text-center">
+                    <h1>Key Performance Tracker</h1>
+                    <button id="AlphButton" onClick={sortByAlph}>
+                        Sort by Alphabetical Order
+                    </button>
+                    <table className = "table mx-auto">
                         <thead>
                             <tr>
                                 <th>Metric</th>
@@ -51,20 +53,20 @@ const MetricWall = () => {
                                     <tr key = {index}>
                                         <td><Link to ={`/metrics/${m._id}`}>{m.name}</Link></td>
                                         <td>
-                                            {m.status}
-                                        {/* <div
+                                            {/* {m.status} */}
+                                        <div
                                             style={{
-                                                backgroundColor: metric.color,
-                                                width: '50px',
-                                                height: '50px',
+                                                backgroundColor: m.status,
+                                                width: '70px',
+                                                height: '70px',
                                                 display: 'inline-block',
                                                 margin: '10px',
                                                 borderRadius: '50%',
                                             }}
-                                        /> */}
+                                        />
                                         </td>
                                         <td>
-                                            <button onClick ={(e) => {deleteMetric(m._id)}}>
+                                            <button id="DeleteButton" onClick ={(e) => {deleteMetric(m._id)}}>
                                                 Delete
                                             </button>
                                         </td>
@@ -74,7 +76,7 @@ const MetricWall = () => {
                         </tbody>
                     </table>
                     <Link to ="/metrics/new">
-                        <button>Add Metric</button>
+                        <button id="AddButton">Add Metric</button>
                     </Link>
                 </div>
             </div>
